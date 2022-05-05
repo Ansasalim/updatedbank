@@ -2,10 +2,10 @@
 
 import { Component, OnInit, Inject, ViewChild,  ElementRef} from '@angular/core';
  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-//  import { MatSort,MatTableDataSource,MatPaginator,MatCheckboxModule} from '@angular/material/sort/table/paginator';
-import {MatTableDataSource} from '@angular/material/table'
- import {MatSort} from '@angular/material/sort'
- import { MatPaginator } from '@angular/material/paginator';
+ import { MatSort,MatTableDataSource,MatPaginator} from '@angular/material';
+// import {MatTableDataSource} from '@angular/material/table'
+//  import {MatSort} from '@angular/material/sort'
+//  import { MatPaginator } from '@angular/material/paginator';
  import { BankhttpService } from '../bankhttp.service';
 // MatCheckboxModule
  export interface User {
@@ -44,16 +44,16 @@ import {MatTableDataSource} from '@angular/material/table'
 
    users: User[] | any;
 
-   @ViewChild('button') button : ElementRef | any; 
-   @ViewChild(MatPaginator) paginator: MatPaginator  | any;
-   @ViewChild(MatSort)sort: MatSort | any ;
+   @ViewChild('button')  button : ElementRef | any; 
+   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator  ;
+   @ViewChild(MatSort,{static:true})sort: MatSort ;
 
    constructor(public bankHttpService : BankhttpService,  public dialog:  MatDialog) {
    console.log('Home component constructor is called');
    }
 
    ngOnInit() {
-       console.log('Home component onIniti called');
+      //  console.log('Home component onIniti called');
        this.bankHttpService.getBankBranches()
         .subscribe((users: User[]) => {
 

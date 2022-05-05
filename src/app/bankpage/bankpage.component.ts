@@ -35,26 +35,25 @@ export class BankpageComponent implements OnInit {
 if(this.loginForm.valid){
   // asynchronous call -login
   this.ds.login(acno, pswd) 
-//   .subscribe((result:any)=> {
-//     if(result ){
-//       localStorage.setItem('currentAcno',JSON.stringify(result.currentAcno))
-//       localStorage.setItem('currentUname',JSON.stringify(result.currentUname))
-//       localStorage.setItem('token',JSON.stringify(result.token))
-// alert(result.message)
-// this.routerLogin.navigateByUrl("home")
-//     }
-//   },
-//   (result:any)=>{
-//     alert(result.error.message)
+  .subscribe((result:any)=> {
+    if(result ){
+      localStorage.setItem('currentAcno',JSON.stringify(result.currentAcno))
+      localStorage.setItem('currentUname',JSON.stringify(result.currentUname))
+      localStorage.setItem('token',JSON.stringify(result.token))
+alert(result.message)
+this.routerLogin.navigateByUrl("home")
+    }
+  },
+  (result:any)=>{
+    alert(result.error.message)
 
-//   }
-//   )
-// }
-//     else{
-//       alert("invalid form")
-//     }
-//   }
+  }
+  )
 }
+    else{
+      alert("invalid form")
+    }
   }
 }
+
 
