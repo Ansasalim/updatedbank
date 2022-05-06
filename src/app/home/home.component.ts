@@ -2,10 +2,10 @@
 
 import { Component, OnInit, Inject, ViewChild,  ElementRef} from '@angular/core';
  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
- import { MatSort,MatTableDataSource,MatPaginator} from '@angular/material';
-// import {MatTableDataSource} from '@angular/material/table'
-//  import {MatSort} from '@angular/material/sort'
-//  import { MatPaginator } from '@angular/material/paginator';
+//  import { MatSort,MatTableDataSource,MatPaginator} from '@angular/material';
+import {MatTableDataSource} from '@angular/material/table'
+ import {MatSort} from '@angular/material/sort'
+ import { MatPaginator } from '@angular/material/paginator';
  import { BankhttpService } from '../bankhttp.service';
 // MatCheckboxModule
  export interface User {
@@ -17,6 +17,7 @@ import { Component, OnInit, Inject, ViewChild,  ElementRef} from '@angular/core'
     district: string,
     state: string,
     bank_name: string,
+    
   }
 
   @Component({
@@ -36,6 +37,7 @@ import { Component, OnInit, Inject, ViewChild,  ElementRef} from '@angular/core'
    })
    export class HomeComponent implements OnInit {
 
+    
    selectedRowIndex : any;
    displayedColumns: string[] = ['favorite','ifsc', 'bank_id', 'branch',  
    'city', 'district', 'state', 'bank_name'];
@@ -45,15 +47,14 @@ import { Component, OnInit, Inject, ViewChild,  ElementRef} from '@angular/core'
    users: User[] | any;
 
    @ViewChild('button')  button : ElementRef | any; 
-   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator  ;
-   @ViewChild(MatSort,{static:true})sort: MatSort ;
+   @ViewChild(MatPaginator) paginator: MatPaginator | any ;
+   @ViewChild(MatSort ) sort: MatSort  |any;
 
-   constructor(public bankHttpService : BankhttpService,  public dialog:  MatDialog) {
-   console.log('Home component constructor is called');
-   }
+   constructor(public bankHttpService : BankhttpService,  public dialog:  MatDialog  ) {
+  
+}
 
    ngOnInit() {
-      //  console.log('Home component onIniti called');
        this.bankHttpService.getBankBranches()
         .subscribe((users: User[]) => {
 
@@ -69,7 +70,6 @@ import { Component, OnInit, Inject, ViewChild,  ElementRef} from '@angular/core'
       applyFilter(filterValue: string) {
        filterValue = filterValue.trim();
        filterValue = filterValue.toLowerCase(); 
-      //  lowercase matches
        this.dataSource.filter = filterValue;
        }
 
@@ -85,3 +85,5 @@ import { Component, OnInit, Inject, ViewChild,  ElementRef} from '@angular/core'
          console.log(this.bankHttpService.getUserInfoFromLocalStorage())
        }
       }
+
+    

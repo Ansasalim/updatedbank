@@ -8,6 +8,7 @@ import { HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/throw';
 
 @Injectable({
  providedIn: 'root'
